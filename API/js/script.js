@@ -1,6 +1,11 @@
-fetch('https://newsdata.io/api/1/news?apikey=pub_309775721912fd76f009fc06c57b7d014e3c9&language=sv')
+fetch('https://newsdata.io/api/1/news?apikey=pub_30977a3372f5b4e759ff3fc7e12e7a91344d3&language=fr')
 .then(res => res.json())
-.then(res => res.results.map((data)=> create_news(data)))
+.then(res =>
+    res.results.forEach((data, index) => {
+        setTimeout(() => {
+            create_news(data);
+        }, 5000*index);
+    }))
 
 const create_news = (data) => {
     document.getElementById('rubrik').innerHTML = data.title;
